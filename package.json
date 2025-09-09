@@ -22,10 +22,8 @@
     "start:unix": "bindings=$(./bindings.sh) && wrangler pages dev ./build/client $bindings",
     "start": "node -e \"const { spawn } = require('child_process'); const isWindows = process.platform === 'win32'; const cmd = isWindows ? 'npm run start:windows' : 'npm run start:unix'; const child = spawn(cmd, { shell: true, stdio: 'inherit' }); child.on('exit', code => process.exit(code));\"",
 
-    // --- NEW: production server entrypoint (used by Docker) ---
     "start:server": "node build/server/index.js",
 
-    // keep dockerbuild helpers if you want, but docker-compose uses the Dockerfile directly
     "dockerrun": "docker run -it -d --name bolt-ai-live -p 3000:3000 --env-file .env.local betterbolt:prod",
     "dockerbuild:prod": "docker build -t betterbolt:prod --target runtime .",
     "dockerbuild": "docker build -t betterbolt:dev --target build .",
