@@ -13,7 +13,7 @@
   "scripts": {
     "deploy": "npm run build && wrangler pages deploy",
     "build": "remix vite:build",
-    "dev": "node pre-start.cjs  && remix vite:dev",
+    "dev": "node pre-start.cjs && remix vite:dev",
     "test": "vitest --run",
     "test:watch": "vitest",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint app",
@@ -21,13 +21,10 @@
     "start:windows": "wrangler pages dev ./build/client",
     "start:unix": "bindings=$(./bindings.sh) && wrangler pages dev ./build/client $bindings",
     "start": "node -e \"const { spawn } = require('child_process'); const isWindows = process.platform === 'win32'; const cmd = isWindows ? 'npm run start:windows' : 'npm run start:unix'; const child = spawn(cmd, { shell: true, stdio: 'inherit' }); child.on('exit', code => process.exit(code));\"",
-
     "start:server": "node build/server/index.js",
-
     "dockerrun": "docker run -it -d --name bolt-ai-live -p 3000:3000 --env-file .env.local betterbolt:prod",
     "dockerbuild:prod": "docker build -t betterbolt:prod --target runtime .",
     "dockerbuild": "docker build -t betterbolt:dev --target build .",
-
     "typecheck": "tsc",
     "typegen": "wrangler types",
     "preview": "pnpm run build && pnpm run start:server",
@@ -46,10 +43,8 @@
   "engines": {
     "node": ">=18.18.0"
   },
-  "dependencies": { /* unchanged from yours */ },
-  "devDependencies": {
-    /* unchanged, including "wrangler" for local dev */
-  },
+  "dependencies": {},
+  "devDependencies": {},
   "resolutions": {
     "@typescript-eslint/utils": "^8.0.0-alpha.30"
   },
