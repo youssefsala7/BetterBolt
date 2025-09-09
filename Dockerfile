@@ -20,7 +20,7 @@ RUN pnpm install --offline --frozen-lockfile
 # Build the Remix app
 RUN NODE_OPTIONS=--max-old-space-size=4096 pnpm run build
 # After building, keep only prod deps for runtime
-RUN pnpm prune --prod
+RUN pnpm prune --prod --ignore-scripts
 
 # ---- runtime stage ----
 FROM node:22-bookworm-slim AS runtime
