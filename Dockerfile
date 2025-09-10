@@ -1,5 +1,5 @@
 # ---- build stage ----
-FROM node:22-bookworm-slim AS build
+FROM node:20-bookworm-slim AS build
 WORKDIR /work
 
 # CI-friendly env
@@ -20,6 +20,7 @@ RUN pnpm fetch
 # Copy the rest and build
 COPY . .
 RUN pnpm install --offline --frozen-lockfile
+RUN node -p "require('react-dom/package.json').version"
 RUN NODE_OPTIONS=--max-old-space-size=4096 pnpm run build
 
 # Keep only prod deps for runtime
