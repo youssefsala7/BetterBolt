@@ -1,30 +1,28 @@
 # node
 node_modules
-pnpm-lock.yaml.save
+.pnpm-store
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-store
 
 # VCS / editors
 .git
 .gitignore
-.gitattributes
 .gitmodules
+.gitattributes
 .svn
 .hg
 .idea
 .vscode
 .DS_Store
 
-# build artifacts we don't want to send as context
+# build artifacts (these are rebuilt inside the image anyway)
 dist
-build/client
-build/server
-*.local
-.env*
-!.env.example
-
-# misc
+build
 coverage
 tmp
+
+# env (let Coolify inject)
+.env
+.env.*
+!.env.example
