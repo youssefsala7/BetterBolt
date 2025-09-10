@@ -27,7 +27,7 @@ RUN pnpm prune --prod --ignore-scripts
 
 
 # ---- runtime stage ----
-FROM node:22-bookworm-slim AS runtime
+FROM node:20-bullseye-slim AS base
 
 # Put the runtime app somewhere that will NOT be shadowed by any host mounts
 # Coolify tends to use /app in examples; avoid that path.
