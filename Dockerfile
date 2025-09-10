@@ -15,6 +15,9 @@ ENV VITE_PUBLIC_APP_URL=${VITE_PUBLIC_APP_URL}
 
 # Install deps efficiently
 COPY package.json pnpm-lock.yaml* ./
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends git \
+    && rm -rf /var/lib/apt/lists/*
 RUN pnpm fetch
 
 # Copy the rest and build
